@@ -120,6 +120,25 @@
   color: var(--text);
 }
 
+.filenameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.filenameLabel {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.zipExt {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .errorBox {
   background: #1f0f0f;
   border: 1px solid #5c2020;

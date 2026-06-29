@@ -6,6 +6,7 @@ type Phase = "idle" | "previewing" | "previewed" | "downloading" | "done" | "err
 
 export default function Home() {
   const [url, setUrl] = useState("");
+  const [zipName, setZipName] = useState("");
   const [phase, setPhase] = useState<Phase>("idle");
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState("");
@@ -46,7 +47,7 @@ export default function Home() {
       const res = await fetch("/api/scrape", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: url.trim(), mode: "zip" }),
+        body: JSON.stringify({ url: url.trim(), mode: "zip", zipName: zipName.trim() }),
       });
       if (!res.ok) {
         const data = await res.json();
@@ -55,9 +56,8 @@ export default function Home() {
       const blob = await res.blob();
       const dl = document.createElement("a");
       dl.href = URL.createObjectURL(blob);
-      const cd = res.headers.get("Content-Disposition") ?? "";
-      const match = cd.match(/filename="(.+?)"/);
-      dl.download = match?.[1] ?? "gallery-images.zip";
+      const safeName = zipName.trim().replace(/[^a-zA-Z0-9_-]/g, "-") || "gallery-images";
+      dl.download = `${safeName}.zip`;
       dl.click();
       setPhase("done");
       setProgress("");
@@ -70,6 +70,7 @@ export default function Home() {
 
   function reset() {
     setUrl("");
+    setZipName("");
     setImages([]);
     setPhase("idle");
     setError("");
@@ -120,6 +121,19 @@ export default function Home() {
           >
             {phase === "previewing" ? "Fetching…" : "Preview"}
           </button>
+        </div>
+
+        <div className={styles.filenameRow}>
+          <label className={styles.filenameLabel}>Zip filename</label>
+          <input
+            type="text"
+            value={zipName}
+            onChange={(e) => setZipName(e.target.value)}
+            placeholder="gallery-images"
+            disabled={busy}
+            style={{ flex: 1 }}
+          />
+          <span className={styles.zipExt}>.zip</span>
         </div>
 
         {error && (
