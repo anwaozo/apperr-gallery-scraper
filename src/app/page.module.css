@@ -26,8 +26,10 @@
 }
 
 .logoIcon {
-  width: 32px;
-  height: 32px;
+  height: 48px;
+  width: auto;
+  filter: invert(1);
+  display: block;
 }
 
 .logoText {

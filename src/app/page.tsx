@@ -85,11 +85,10 @@ export default function Home() {
         <a href="https://apperr.com" target="_blank" rel="noreferrer" className={styles.logoWrap}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://cdn.prod.website-files.com/674c57b8bc8863cb7e9c6a4b/674ef71f9243e8e3af0563d8_ApperrDesigns_Icon_White_RGB-1.png"
-            alt="Apperr"
+            src="/apperr-logo.png"
+            alt="Apperr Designs"
             className={styles.logoIcon}
           />
-          <span className={styles.logoText}>Apperr</span>
         </a>
         <span className={styles.navTag}>Gallery Scraper</span>
       </nav>
