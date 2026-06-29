@@ -97,9 +97,9 @@ export default function Home() {
       <div className={styles.card}>
         <div className={styles.header}>
           <div className={styles.badge}>AI-Powered Tool</div>
-          <h1 className={styles.title}>Gallery Image Scraper</h1>
+          <h1 className={styles.title}>Image Extractor</h1>
           <p className={styles.subtitle}>
-            Paste any public gallery URL to preview and download all images as a zip — built by Apperr.
+            Paste any public gallery URL to preview and download all images as a zip — built by Apperr Designs.
           </p>
         </div>
 
